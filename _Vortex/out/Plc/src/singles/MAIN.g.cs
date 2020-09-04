@@ -7,6 +7,7 @@ using Vortex.Connector.Identity;
 
 namespace Plc
 {
+	[Container(Layout.Tabs)]
 	[Vortex.Connector.Attributes.TypeMetaDescriptorAttribute("{attribute addProperty Name \"\" }", "MAIN", "Plc", TypeComplexityEnum.Complex)]
 	public partial class MAIN : Vortex.Connector.IVortexObject, IMAIN, IShadowMAIN, Vortex.Connector.IVortexOnlineObject, Vortex.Connector.IVortexShadowObject
 	{
@@ -31,6 +32,7 @@ namespace Plc
 
 		protected string _humanReadable;
 		Vortex.Connector.ValueTypes.OnlinerString _Hello_World;
+		[Container(Layout.Stack)]
 		public Vortex.Connector.ValueTypes.OnlinerString Hello_World
 		{
 			get
@@ -39,6 +41,7 @@ namespace Plc
 			}
 		}
 
+		[Container(Layout.Stack)]
 		Vortex.Connector.ValueTypes.Online.IOnlineString IMAIN.Hello_World
 		{
 			get
@@ -47,6 +50,7 @@ namespace Plc
 			}
 		}
 
+		[Container(Layout.Stack)]
 		Vortex.Connector.ValueTypes.Shadows.IShadowString IShadowMAIN.Hello_World
 		{
 			get
@@ -298,6 +302,7 @@ namespace Plc
             /// <exclude />
 	public partial interface IMAIN : Vortex.Connector.IVortexOnlineObject
 	{
+		[Container(Layout.Stack)]
 		Vortex.Connector.ValueTypes.Online.IOnlineString Hello_World
 		{
 			get;
@@ -331,6 +336,7 @@ namespace Plc
             /// <exclude />
 	public partial interface IShadowMAIN : Vortex.Connector.IVortexShadowObject
 	{
+		[Container(Layout.Stack)]
 		Vortex.Connector.ValueTypes.Shadows.IShadowString Hello_World
 		{
 			get;
@@ -364,6 +370,7 @@ namespace Plc
 	public partial class PlainMAIN : System.ComponentModel.INotifyPropertyChanged, Vortex.Connector.IPlain
 	{
 		System.String _Hello_World;
+		[Container(Layout.Stack)]
 		public System.String Hello_World
 		{
 			get

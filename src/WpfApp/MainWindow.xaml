@@ -14,23 +14,29 @@
     <Window.DataContext>
         <local:MainWindowModel />
     </Window.DataContext>
-    <Grid
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Style="{DynamicResource Card}">
-        <StackPanel Margin="24" VerticalAlignment="Center">
-            <TextBlock
-                FontSize="16"
-                FontWeight="DemiBold"
-                Text="Display" />
-            <vortex:RenderableContentControl DataContext="{Binding MAIN}" PresentationType="Display" />
-            <Separator Margin="10" />
-            <TextBlock
-                FontSize="16"
-                FontWeight="DemiBold"
-                Text="Control" />
+    <ScrollViewer>
+        <Grid
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Style="{DynamicResource Card}">
 
-            <vortex:RenderableContentControl DataContext="{Binding MAIN}" PresentationType="Control" />
-        </StackPanel>
-    </Grid>
+            <StackPanel Margin="24" VerticalAlignment="Center">
+                <TextBlock
+                    FontSize="16"
+                    FontWeight="DemiBold"
+                    Text="Display" />
+                <vortex:RenderableContentControl DataContext="{Binding MAIN}" PresentationType="Display" />
+                <Separator Margin="10" />
+                <TextBlock
+                    FontSize="16"
+                    FontWeight="DemiBold"
+                    Text="Control" />
+                <vortex:RenderableContentControl DataContext="{Binding MAIN}" PresentationType="Control" />
+                <Button Command="{Binding SendMessageCommand}">SEND MESSAGE</Button>
+                <GroupBox Header="Received">
+                    <TextBlock Text="{Binding Received}" TextWrapping="WrapWithOverflow" />
+                </GroupBox>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>

@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="MAIN" Id="{2aec7386-fec2-4299-8c2e-88bb20ee3274}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM MAIN
+    <Declaration><![CDATA[{attribute wpf [Container(Layout.Tabs)]}
+PROGRAM MAIN
 VAR
+	{attribute wpf [Container(Layout.Stack)]}
 	{attribute addProperty Name "Hello world"}
 	Hello_World : STRING;
 	{attribute addProperty Name "Counter"}
 	Counter :INT;
 	{attribute addProperty Name "Change me"}
 	Variable :STRING;
+
+//	{attribute wpf [Container(Layout.Stack)]}
+//	_testStruct : stTestStruct;		
 END_VAR
 ]]></Declaration>
     <Implementation>

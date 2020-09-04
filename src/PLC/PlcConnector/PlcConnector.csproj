@@ -84,6 +84,9 @@
     <Compile Include="..\..\..\_Vortex\out\Plc\src\singles\Plc.g.cs">
       <Link>_generated\Plc\Plc.g.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\_Vortex\out\Plc\src\singles\stTestStruct.g.cs">
+      <Link>_generated\Plc\stTestStruct.g.cs</Link>
+    </Compile>
     <Compile Include="Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Localizations.Designer.cs">
