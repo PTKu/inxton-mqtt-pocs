@@ -12,8 +12,8 @@ VAR
 	{attribute addProperty Name "Change me"}
 	Variable :STRING;
 
-//	{attribute wpf [Container(Layout.Stack)]}
-//	_testStruct : stTestStruct;		
+	{attribute wpf [Container(Layout.Stack)]}
+	_testStruct : stTestStruct;		
 END_VAR
 ]]></Declaration>
     <Implementation>

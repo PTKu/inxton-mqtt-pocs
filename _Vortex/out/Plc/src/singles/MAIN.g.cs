@@ -109,11 +109,40 @@ namespace Plc
 			}
 		}
 
+		stTestStruct __testStruct;
+		[Container(Layout.Stack)]
+		public stTestStruct _testStruct
+		{
+			get
+			{
+				return __testStruct;
+			}
+		}
+
+		[Container(Layout.Stack)]
+		IstTestStruct IMAIN._testStruct
+		{
+			get
+			{
+				return _testStruct;
+			}
+		}
+
+		[Container(Layout.Stack)]
+		IShadowstTestStruct IShadowMAIN._testStruct
+		{
+			get
+			{
+				return _testStruct;
+			}
+		}
+
 		public void LazyOnlineToShadow()
 		{
 			Hello_World.Shadow = Hello_World.LastValue;
 			Counter.Shadow = Counter.LastValue;
 			Variable.Shadow = Variable.LastValue;
+			_testStruct.LazyOnlineToShadow();
 		}
 
 		public void LazyShadowToOnline()
@@ -121,16 +150,19 @@ namespace Plc
 			Hello_World.Cyclic = Hello_World.Shadow;
 			Counter.Cyclic = Counter.Shadow;
 			Variable.Cyclic = Variable.Shadow;
+			_testStruct.LazyShadowToOnline();
 		}
 
 		public PlainMAIN CreatePlainerType()
 		{
 			var cloned = new PlainMAIN();
+			cloned._testStruct = _testStruct.CreatePlainerType();
 			return cloned;
 		}
 
 		protected PlainMAIN CreatePlainerType(PlainMAIN cloned)
 		{
+			cloned._testStruct = _testStruct.CreatePlainerType();
 			return cloned;
 		}
 
@@ -267,6 +299,7 @@ namespace Plc
 			Counter.AttributeName = "Counter";
 			_Variable = @Connector.Online.Adapter.CreateSTRING(this, "Change me", "Variable");
 			Variable.AttributeName = "Change me";
+			__testStruct = new stTestStruct(this, "", "_testStruct");
 			AttributeName = "";
 			PexConstructor(parent, readableTail, symbolTail);
 			parent.AddChild(this);
@@ -281,6 +314,7 @@ namespace Plc
 			Counter.AttributeName = "Counter";
 			_Variable = Vortex.Connector.IConnectorFactory.CreateSTRING();
 			Variable.AttributeName = "Change me";
+			__testStruct = new stTestStruct();
 			AttributeName = "";
 			PexConstructorParameterless();
 		}
@@ -318,6 +352,12 @@ namespace Plc
 			get;
 		}
 
+		[Container(Layout.Stack)]
+		IstTestStruct _testStruct
+		{
+			get;
+		}
+
 		System.String AttributeName
 		{
 			get;
@@ -348,6 +388,12 @@ namespace Plc
 		}
 
 		Vortex.Connector.ValueTypes.Shadows.IShadowString Variable
+		{
+			get;
+		}
+
+		[Container(Layout.Stack)]
+		IShadowstTestStruct _testStruct
 		{
 			get;
 		}
@@ -424,11 +470,31 @@ namespace Plc
 			}
 		}
 
+		PlainstTestStruct __testStruct;
+		[Container(Layout.Stack)]
+		public PlainstTestStruct _testStruct
+		{
+			get
+			{
+				return __testStruct;
+			}
+
+			set
+			{
+				if (__testStruct != value)
+				{
+					__testStruct = value;
+					PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(nameof(_testStruct)));
+				}
+			}
+		}
+
 		public void CopyPlainToCyclic(Plc.MAIN target)
 		{
 			target.Hello_World.Cyclic = Hello_World;
 			target.Counter.Cyclic = Counter;
 			target.Variable.Cyclic = Variable;
+			_testStruct.CopyPlainToCyclic(target._testStruct);
 		}
 
 		public void CopyPlainToCyclic(Plc.IMAIN target)
@@ -441,6 +507,7 @@ namespace Plc
 			target.Hello_World.Shadow = Hello_World;
 			target.Counter.Shadow = Counter;
 			target.Variable.Shadow = Variable;
+			_testStruct.CopyPlainToShadow(target._testStruct);
 		}
 
 		public void CopyPlainToShadow(Plc.IShadowMAIN target)
@@ -453,6 +520,7 @@ namespace Plc
 			Hello_World = source.Hello_World.LastValue;
 			Counter = source.Counter.LastValue;
 			Variable = source.Variable.LastValue;
+			_testStruct.CopyCyclicToPlain(source._testStruct);
 		}
 
 		public void CopyCyclicToPlain(Plc.IMAIN source)
@@ -465,6 +533,7 @@ namespace Plc
 			Hello_World = source.Hello_World.Shadow;
 			Counter = source.Counter.Shadow;
 			Variable = source.Variable.Shadow;
+			_testStruct.CopyShadowToPlain(source._testStruct);
 		}
 
 		public void CopyShadowToPlain(Plc.IShadowMAIN source)
@@ -475,6 +544,7 @@ namespace Plc
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		public PlainMAIN()
 		{
+			__testStruct = new PlainstTestStruct();
 		}
 	}
 }

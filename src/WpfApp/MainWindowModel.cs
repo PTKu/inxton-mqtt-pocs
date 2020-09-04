@@ -18,6 +18,10 @@ namespace WpfApp
 {
     public class MainWindowModel : INotifyPropertyChanged
     {
+        const string STR_Send_As_Json = "send_as_json";
+        const string STR_Send_As_Items = "send_as_items";
+        const string STR_Send_As_Xml = "send_as_xml";
+
         public MainWindowModel()
         {            
             MAIN = Entry.Plc.MAIN;
@@ -34,15 +38,16 @@ namespace WpfApp
             var subscriberOptions = new MqttClientOptionsBuilder().WithTcpServer("mqtt.eclipse.org").Build();
             subscriberClient.ConnectAsync(subscriberOptions).Wait();
 
-            subscriberClient.SubscribeAsync("send_as_json").Wait();
-            subscriberClient.SubscribeAsync("send_as_items").Wait();
-            subscriberClient.SubscribeAsync("send_as_xml").Wait();
+            subscriberClient.SubscribeAsync(STR_Send_As_Json).Wait();
+            subscriberClient.SubscribeAsync(STR_Send_As_Items).Wait();
+            subscriberClient.SubscribeAsync(STR_Send_As_Xml).Wait();
 
             subscriberClient.UseApplicationMessageReceivedHandler((a) => {
-                Received = $"{a.ApplicationMessage.Topic}:\n{a.ApplicationMessage.ConvertPayloadToString()}";                
+                Received += $"\n{DateTime.Now}\n{a.ApplicationMessage.Topic}:\n{a.ApplicationMessage.ConvertPayloadToString()}";                
             });
 
             SendMessageCommand = new RelayCommand(a => Send());
+            ClearReceiveBoxCommand = new RelayCommand(a => this.Received = string.Empty, b => this.Received != string.Empty);
         }
 
         public MAIN MAIN { get; set; }
@@ -60,9 +65,9 @@ namespace WpfApp
             var plain = MAIN.CreatePlainerType();
             plain.CopyCyclicToPlain(MAIN);
 
-            await BroadCastAsJson(plain, "send_as_json");
-            //await BroadcastAsItems(MAIN, "send_as_items");
-            //await BroadcastAsXml(plain, "send_as_xml");
+            await BroadCastAsJson(plain, STR_Send_As_Json);
+            await BroadcastAsItems(MAIN, STR_Send_As_Items);
+            // await BroadcastAsXml(plain, STR_Send_As_Xml);                      
         }
 
         private async Task BroadCastAsJson(IPlain plain, string topic)
@@ -102,6 +107,7 @@ namespace WpfApp
 
         public RelayCommand SendMessageCommand { get; }
 
+        public RelayCommand ClearReceiveBoxCommand { get; }
 
         string recieved;
         public string Received

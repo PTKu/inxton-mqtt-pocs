@@ -8,7 +8,7 @@
     xmlns:vortex="http://vortex.mts/xaml"
     Title="MainWindow"
     Width="375"
-    Height="500"
+    Height="800"
     Background="{DynamicResource Surface}"
     mc:Ignorable="d">
     <Window.DataContext>
@@ -34,8 +34,11 @@
                 <vortex:RenderableContentControl DataContext="{Binding MAIN}" PresentationType="Control" />
                 <Button Command="{Binding SendMessageCommand}">SEND MESSAGE</Button>
                 <GroupBox Header="Received">
-                    <TextBlock Text="{Binding Received}" TextWrapping="WrapWithOverflow" />
+                    <ScrollViewer Height="200">
+                        <TextBlock Text="{Binding Received}" TextWrapping="WrapWithOverflow" />
+                    </ScrollViewer>
                 </GroupBox>
+                <Button Command="{Binding ClearReceiveBoxCommand}">CLEAR</Button>
             </StackPanel>
         </Grid>
     </ScrollViewer>
