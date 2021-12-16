@@ -32,10 +32,10 @@ namespace WpfApp
             forwarderClient = factory.CreateMqttClient();
             subscriberClient = factory.CreateMqttClient();
             
-            var clientOptions = new MqttClientOptionsBuilder().WithTcpServer("mqtt.eclipse.org").Build();
+            var clientOptions = new MqttClientOptionsBuilder().WithTcpServer("broker.emqx.io").Build();
             forwarderClient.ConnectAsync(clientOptions).Wait();
 
-            var subscriberOptions = new MqttClientOptionsBuilder().WithTcpServer("mqtt.eclipse.org").Build();
+            var subscriberOptions = new MqttClientOptionsBuilder().WithTcpServer("broker.emqx.io").Build();
             subscriberClient.ConnectAsync(subscriberOptions).Wait();
 
             subscriberClient.SubscribeAsync(STR_Send_As_Json).Wait();

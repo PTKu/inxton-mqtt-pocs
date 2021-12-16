@@ -1,0 +1,26 @@
+{
+  "AliasBlocks": [],
+  "EnumBlocks": [],
+  "FunctionBlocks": [],
+  "GlobalVariableTables": [],
+  "Name": "Plc",
+  "Namespace": "Plc",
+  "ProgramBlocks": [
+    {
+      "ImplementationText": "",
+      "Methods": [],
+      "Properties": [],
+      "Name": "MAIN",
+      "DeclarationText": "[NS : 'Plc' NAME : 'MAIN']\n{attribute wpf [Container(Layout.Tabs)]}\nPROGRAM MAIN\nVAR\n\t{attribute wpf [Container(Layout.Stack)]}\n\t{attribute addProperty Name \"Hello world\"}\n\tHello_World : STRING;\n\t{attribute addProperty Name \"Counter\"}\n\tCounter :INT;\n\t{attribute addProperty Name \"Change me\"}\n\tVariable :STRING;\n\n\t{attribute wpf [Container(Layout.Stack)]}\n\t_testStruct : stTestStruct;\t\t\nEND_VAR\n",
+      "MirrorFiles": null
+    }
+  ],
+  "StructBlocks": [
+    {
+      "Name": "stTestStruct",
+      "DeclarationText": "[NS : 'Plc' NAME : 'stTestStruct'] [STRUCT]\nTYPE stTestStruct :\nSTRUCT\n\t{attribute addProperty Name \"BOOL\"}\n\tBOOL_val : BOOL;\n\t{attribute addProperty Name \"BYTE\"}\n\tBYTE_val : BYTE; //   0-255 8 bit\n\t{attribute addProperty Name \"WORD\"}\n\tWORD_val : WORD; //   0-65535 16 bit\n\t{attribute addProperty Name \"DWORD\"}\n\tDWORD_val : DWORD; //   0-4294967295 32 bit\n\t{attribute addProperty Name \"LWORD\"}\n\tLWORD_val : LWORD; //   0-264-1 64 bit\n\t{attribute addProperty Name \"SINT\"}\n\tSINT_val : SINT; //   -128-127 8 bit\n\t{attribute addProperty Name \"USINT\"}\n\tUSINT_val : USINT; //   0-255 8 bit\n\t{attribute addProperty Name \"INT\"}\n\tINT_val : INT; //   -32768-32767 16 bit\n\t{attribute addProperty Name \"UINT\"}\n\tUINT_val : UINT; //   0-65535 16 bit\n\t{attribute addProperty Name \"DINT\"}\n\tDINT_val : DINT; //   -2147483648-2147483647 32 bit\n\t{attribute addProperty Name \"UDINT\"}\n\tUDINT_val : UDINT; //   0-4294967295 32 bit\n\t{attribute addProperty Name \"LINT\"}\n\tLINT_val : LINT; //   -263-263-1 64 bit\n\t{attribute addProperty Name \"ULINT\"}\n\tULINT_val : ULINT; //   0-264-1 64 bit\n\t{attribute addProperty Name \"REAL\"}\n\tREAL_val : REAL; //   -3.402823E+38-3.402823E+38 32 bit\n\t{attribute addProperty Name \"LREAL\"}\n\tLREAL_val : LREAL; //   -1.7976931348623158e+308-1.7976931348623158e+308 64 bit\n\t{attribute addProperty Name \"STRING(82)\"}\n\tSTRING_val : STRING; //   - \n\t{attribute addProperty Name \"WSTRING(82)\"}\n\tWSTRING_val : WSTRING; //   - \n\t{attribute addProperty Name \"TIME\"}\n\tTIME_val : TIME; //   0-4294967295 32 bit\n\t{attribute addProperty Name \"TIME OF DAY\"}\n\tTIME_OF_DAY_val : TIME_OF_DAY; //   0 (00:00:00:000)-4294967295 (23:59:59:999) 32 bit\n\t{attribute addProperty Name \"DATE\"}\n\tDATE_val : DATE; //   0 (01.01.1970)-4294967295 (7 February 2106) 32 bit\n\t{attribute addProperty Name \"DATE TIME\"}\n\tDATE_AND_TIME_val : DATE_AND_TIME; //   0 (01.01.1970, 00:00)-4294967295 (7 February 2106, 6:28:15) 32 bit\n\t{attribute addProperty Name \"TOD\"}\n\tTOD_val : TOD; //   0 (00:00:00:000)-4294967295 (23:59:59:999) 32 bit\n\t{attribute addProperty Name \"DT\"}\n\tDT_val : DT; //   0 (01.01.1970, 00:00)-4294967295 (7 February 2106, 6:28:15) 32 bit\n\t{attribute addProperty Name \"LTIME\"}\n\tLTIME_val : LTIME; //   0-213503d23h34m33s709ms551us615ns 64 bit\n\t{attribute addProperty Name \"ARRAY OF BASE TYPES\"}\n\tValueTypeArray : ARRAY[0..5,0..3,0..2] OF INT;\t\nEND_STRUCT\nEND_TYPE\n",
+      "MirrorFiles": null
+    }
+  ],
+  "UnionBlocks": []
+}

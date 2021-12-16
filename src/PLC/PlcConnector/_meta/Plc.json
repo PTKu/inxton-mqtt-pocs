@@ -1,0 +1,18 @@
+{
+  "Types": [
+    {
+      "TypeAttributes": "\n{attribute addProperty Name \"\" }",
+      "TypeName": "stTestStruct",
+      "Namespace": "Plc",
+      "TypeMetaInfo": 1
+    },
+    {
+      "TypeAttributes": "\n{attribute addProperty Name \"\" }",
+      "TypeName": "MAIN",
+      "Namespace": "Plc",
+      "TypeMetaInfo": 3
+    }
+  ],
+  "Name": "Plc",
+  "Namespace": "Plc"
+}

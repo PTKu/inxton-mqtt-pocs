@@ -1,4 +1,5 @@
 ﻿using MQTTnet.Diagnostics;
+using MQTTnet.Diagnostics.Logger;
 using System;
 using System.Text;
 
@@ -10,9 +11,9 @@ namespace MQTTnet.TestApp.NetCore
         static readonly object _lock = new object();
 
         public static void ForwardToConsole()
-        {
-            MqttNetGlobalLogger.LogMessagePublished -= PrintToConsole;
-            MqttNetGlobalLogger.LogMessagePublished += PrintToConsole;
+        {            
+            //MqttNetGlobalLogger.LogMessagePublished -= PrintToConsole;
+            //MqttNetGlobalLogger.LogMessagePublished += PrintToConsole;
         }
 
         public static void PrintToConsole(string message, ConsoleColor color)
